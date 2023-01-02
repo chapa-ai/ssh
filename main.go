@@ -13,23 +13,6 @@ type Project struct {
 	Watcher *watcher.EventFSLess
 }
 
-//type EventFSLess struct {
-//	Watcher
-//	Callback func(log logger.LoggerInterface, event *lessWatcher.Event)
-//	Timeout  int32
-//}
-//
-//type Watcher struct {
-//	Singleton
-//	Path         string
-//	ExcludeMatch []string
-//}
-
-//type Singleton struct {
-//	instance sync.Once
-//	exitOnce sync.Once
-//}
-
 func Constructor(options agent.Options) *agent.Agent {
 	return &agent.Agent{
 		SSHOptions: options,
@@ -40,8 +23,8 @@ func main() {
 	p := Project{}
 
 	a := Constructor(agent.Options{
-		Ip:       "162.55.165.223",
-		Password: "thil=ee8aL",
+		Ip:       "192.133.1.105",
+		Password: "kLkeu9is9N",
 		Login:    "root",
 	})
 

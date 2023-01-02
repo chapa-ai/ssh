@@ -3,7 +3,7 @@ package ssh
 import (
 	"bytes"
 	"fmt"
-	"github.com/sirupsen/logrus"
+	"github.com/vortex14/gotyphoon/log"
 	"net"
 	"os"
 	"ssh/logger"
@@ -18,9 +18,9 @@ import (
 	Errors "ssh/errors"
 )
 
-//func init() {
-//	log.InitD()
-//}
+func init() {
+	log.InitD()
+}
 
 type Options struct {
 	Ip       string
@@ -60,7 +60,7 @@ func (s *SSH) CopyFileFromHost(srcPath string, pathTarget string) error {
 		}
 	}
 
-	//logger := log.New(log.D{"name": "uploaderFile"})
+	logger := log.New(log.D{"name": "uploaderFile"})
 
 	sftpUploadFile := &progressFile.File{
 		File1: progressFile.File1{
@@ -69,7 +69,7 @@ func (s *SSH) CopyFileFromHost(srcPath string, pathTarget string) error {
 			},
 			Path: srcPath,
 			OnFinish: func(f *os.File) {
-				logrus.Printf("test done !", f.Name())
+				logger.Debug("test done !", f.Name())
 			},
 		},
 	}

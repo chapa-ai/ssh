@@ -1,6 +1,7 @@
 package watcher
 
 import (
+	"github.com/vortex14/gotyphoon/log"
 	"ssh/logger"
 	"time"
 
@@ -15,9 +16,8 @@ type EventFSLess struct {
 
 func (w *EventFSLess) Watch() {
 	w.Construct(func() {
-		//LOG := log.New(log.D{"watch": w.Path})
-
-		var LOG logger.LoggerInterface
+		LOG := log.New(log.D{"watch": w.Path})
+		//var LOG logger.LoggerInterface
 
 		ww := lessWatcher.New()
 		// SetMaxEvents to 1 to allow at most 1 event's to be received

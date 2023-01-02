@@ -1,7 +1,7 @@
 package agent
 
 import (
-	"github.com/sirupsen/logrus"
+	"github.com/vortex14/gotyphoon/log"
 	Errors "ssh/errors"
 	"ssh/logger"
 	"ssh/singleton"
@@ -31,7 +31,7 @@ type Options struct {
 }
 
 func (a *Agent) init() {
-	a.ssh.Construct(func() {
+	a.Construct(func() {
 		a.ssh = &s.SSH{
 			Options: s.Options{
 				Ip:       a.SSHOptions.Ip,
@@ -39,8 +39,7 @@ func (a *Agent) init() {
 				Login:    a.SSHOptions.Login,
 			},
 		}
-		//a.LOG = log.New(log.D{"agent": "SFTP-AGENT"})
-		logrus.Printf("agent: SFTP-AGENT")
+		a.LOG = log.New(log.D{"agent": "SFTP-AGENT"})
 
 		a.LOG.Debug("init agent")
 	})
