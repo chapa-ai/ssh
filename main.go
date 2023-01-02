@@ -3,7 +3,9 @@ package main
 import (
 	"fmt"
 	lessWatcher "github.com/radovskyb/watcher"
+	"os"
 	"ssh/agent"
+	"ssh/config"
 	"ssh/logger"
 	"ssh/watcher"
 	"strings"
@@ -22,10 +24,21 @@ func Constructor(options agent.Options) *agent.Agent {
 func main() {
 	p := Project{}
 
+	err := config.InitConfig()
+	if err != nil {
+		panic(err)
+	}
+
+	//a := Constructor(agent.Options{
+	//	Ip:       "192.133.1.105",
+	//	Password: "kLkeu9is9N",
+	//	Login:    "root",
+	//})
+
 	a := Constructor(agent.Options{
-		Ip:       "192.133.1.105",
-		Password: "kLkeu9is9N",
-		Login:    "root",
+		Ip:       os.Getenv("IpAddress"),
+		Password: os.Getenv("Password"),
+		Login:    os.Getenv("Login"),
 	})
 
 	p.Watcher = &watcher.EventFSLess{
